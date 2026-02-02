@@ -126,47 +126,17 @@
       "updatedAt": "2026-01-31T20:00:00.000Z"
     },
     {
-      "id": "8",
-      "title": "Web Development Project: Portfolio",
-      "description": "Create a personal portfolio website using React",
-      "category": "Computer Science",
-      "priority": "medium",
-      "status": "in-progress",
-      "dueDate": "2026-02-15",
-      "userId": 3,
-      "createdBy": 3,
-      "createdAt": "2026-01-30T11:00:00.000Z",
-      "updatedAt": "2026-02-01T13:00:00.000Z"
-    },
-    {
-      "title": "Llorar2",
+      "id": "928a",
+      "title": "Llorar",
       "category": "Other",
       "priority": "high",
       "status": "in-progress",
       "dueDate": "2026-02-02",
-      "description": "Llorar por esta prueba",
-      "updatedAt": "2026-02-02T16:03:58.126Z",
-      "id": "076c"
-    },
-    {
-      "title": "Llorar2",
-      "category": "Other",
-      "priority": "high",
-      "status": "in-progress",
-      "dueDate": "2004-02-02",
-      "description": "llorar",
-      "updatedAt": "2026-02-02T16:04:40.332Z",
-      "id": "caf5"
-    },
-    {
-      "title": "Llorar2",
-      "category": "Other",
-      "priority": "high",
-      "status": "in-progress",
-      "dueDate": "2004-02-02",
-      "description": "asdasd",
-      "updatedAt": "2026-02-02T16:05:09.587Z",
-      "id": "8258"
+      "description": "llorar por esta prueba tan dificil",
+      "userId": "91bf",
+      "createdBy": "91bf",
+      "createdAt": "2026-02-02T17:34:39.298Z",
+      "updatedAt": "2026-02-02T17:35:13.018Z"
     }
   ]
 }

@@ -84,7 +84,7 @@ class TaskService {
                 updatedAt: new Date().toISOString()
             };
 
-            return await apiService.put(`/tasks/${taskId}`, updatedTask);
+            return await apiService.patch(`/tasks/${taskId}`, updatedTask);
         } catch (error) {
             console.error('Update task error:', error);
             throw error;
@@ -113,7 +113,7 @@ class TaskService {
      */
     async deleteTask(taskId) {
         try {
-            return await apiService.delete(`/tasks/${taskId}`);
+            return await apiService.remove(`/tasks/${taskId}`);
         } catch (error) {
             console.error('Delete task error:', error);
             throw error;

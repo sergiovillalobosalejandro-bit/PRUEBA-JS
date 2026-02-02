@@ -182,11 +182,53 @@ Access to: `http://localhost:8000`
 - User → `/user/tasks`
 
 ### Protection Guards
-- **authGuard**: Verifies if the user is authenticated
+- **authGuard**: Verifies if the user is authenticated    async delete    async deleteTask(taskId) {
+        try {
+            return await apiService.delete(`/tasks/${taskId}`);
+        } catch (error) {
+            console.error('Delete task error:', error);
+            throw error;
+        }
+    }    async deleteTask(taskId) {
+        try {
+            return await apiService.delete(`/tasks/${taskId}`);
+        } catch (error) {
+            console.error('Delete task error:', error);
+            throw error;
+        }
+    }    async deleteTask(taskId) {
+        try {
+            return await apiService.delete(`/tasks/${taskId}`);
+        } catch (error) {
+            console.error('Delete task error:', error);
+            throw error;
+        }
+    }Task(taskId) {
+        try {
+            return await apiService.delete(`/tasks/${taskId}`);
+        } catch (error) {
+            console.error('Delete task error:', error);
+            throw error;
+        }
+    }
 - **roleGuard**: Verifies if the user has the correct role
 - **combinedGuard**: Combines both guards
-
-## 🛠️ Technologies Used
+    async deleteTask(taskId) {
+        try {
+            return await apiService.delete(`/tasks/${taskId}`);
+        } catch (error) {
+            console.error('Delete task error:', error);
+            throw error;
+        }
+    }
+## 🛠️ Technologies Used    async deleteTask(taskId) {
+        try {
+            return await apiService.delete(`/tasks/${taskId}`);
+        } catch (error) {
+            console.error('Delete task error:', error);
+            throw error;
+        }
+    }
 
 - **Vanilla JavaScript (ES6+)**: No frameworks
 - **CSS3**: Modern styles with CSS variables

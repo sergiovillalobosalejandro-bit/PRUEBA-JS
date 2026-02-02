@@ -202,6 +202,7 @@ function renderTasksTable() {
                             <td>${new Date(task.dueDate).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</td>
                             <td>
                                 <div class="action-buttons">
+                                    <button class="action-btn edit-btn" data-id="${task.id}" title="Edit">✏️</button>
                                     <button class="action-btn delete delete-btn" data-id="${task.id}" title="Delete">🗑️</button>
                                 </div>
                             </td>
@@ -213,6 +214,7 @@ function renderTasksTable() {
     `;
     
     setupTaskActionListeners();
+    openTaskModal(taskId)
 }
 
 function setupEventListeners() {
@@ -235,6 +237,13 @@ function setupEventListeners() {
             router.navigate(link.getAttribute('href'));
         });
     });
+        // Edit buttons
+    document.querySelectorAll('.edit-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const taskId = btn.dataset.id;
+            openTaskModal(taskId);
+        });
+    });
 }
 
 function setupTaskActionListeners() {
@@ -254,3 +263,39 @@ function setupTaskActionListeners() {
         });
     });
 }
+function openTaskModal(taskId = null) {
+    const modal = document.getElementById('taskModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const form = document.getElementById('taskForm');
+    
+    form.reset();
+    
+    if (taskId) {
+        // Edit mode
+        modalTitle.textContent = 'Edit Task';
+        const task = currentTasks.find(t => t.id == taskId);
+        
+        if (task) {
+            document.getElementById('taskId').value = task.id;
+            document.getElementById('taskTitle').value = task.title;
+            document.getElementById('taskCategory').value = task.category;
+            document.getElementById('taskPriority').value = task.priority;
+            document.getElementById('taskStatus').value = task.status;
+            document.getElementById('taskDueDate').value = task.dueDate;
+            document.getElementById('taskDescription').value = task.description || '';
+        }
+    } else {
+        // Create mode
+        modalTitle.textContent = 'Create New Task';
+        document.getElementById('taskId').value = '';
+        
+        // Set default due date to tomorrow
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        document.getElementById('taskDueDate').value = tomorrow.toISOString().split('T')[0];
+    }
+    
+    modal.style.display = 'block';
+}
+
+

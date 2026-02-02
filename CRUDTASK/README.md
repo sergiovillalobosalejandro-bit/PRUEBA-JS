@@ -281,3 +281,7 @@ Para iniciar:
 1. `json-server --watch db.json --port 3000`
 2. Abre `index.html` con Live Server
 3. Login con: admin@crudtask.com / admin123
+
+
+
+gracias

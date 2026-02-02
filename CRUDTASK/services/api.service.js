@@ -19,8 +19,7 @@ class ApiService {
 
             return this.handleResponse(response);
         } catch (error) {
-            console.error('GET Error:', error);
-            throw error;
+    throw new Error('No se pudo conectar con el servidor');
         }
     }
 
@@ -37,8 +36,7 @@ class ApiService {
 
             return this.handleResponse(response);
         } catch (error) {
-            console.error('POST Error:', error);
-            throw error;
+    throw new Error('No se pudo conectar con el servidor');
         }
     }
 
@@ -55,8 +53,7 @@ class ApiService {
 
             return this.handleResponse(response);
         } catch (error) {
-            console.error('PUT Error:', error);
-            throw error;
+    throw new Error('No se pudo conectar con el servidor');
         }
     }
 
@@ -73,15 +70,14 @@ class ApiService {
 
             return this.handleResponse(response);
         } catch (error) {
-            console.error('PATCH Error:', error);
-            throw error;
+    throw new Error('No se pudo conectar con el servidor');
         }
     }
 
     /**
      * Realizar petición DELETE
      */
-    async delete(endpoint) {
+    async remove(endpoint) {
         try {
             const response = await fetch(`${API_URL}${endpoint}`, {
                 method: 'DELETE',
@@ -91,9 +87,10 @@ class ApiService {
             return this.handleResponse(response);
         } catch (error) {
             console.error('DELETE Error:', error);
-            throw error;
+            throw new Error('No se pudo eliminar el recurso');
         }
     }
+
 
     /**
      * Obtener headers para las peticiones

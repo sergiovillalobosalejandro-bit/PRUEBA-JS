@@ -90,14 +90,17 @@ class AuthService {
      * Verificar si está autenticado
      */
     isAuthenticated() {
-        return !!this.currentUser && !!localStorage.getItem('token');
+    return !!localStorage.getItem('token') && !!this.getCurrentUser();
     }
 
     /**
      * Obtener usuario actual
      */
     getCurrentUser() {
-        return this.currentUser;
+    if (!this.currentUser) {
+        this.loadUserFromStorage();
+    }
+    return this.currentUser;
     }
 
     /**

@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUDZASO - Academic Task Management Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Iconos SVG inline para la demo */
+        .icon {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+        }
+        
+        /* Demo navigation */
+        .demo-nav {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+        }
+        
+        .demo-nav h4 {
+            margin: 0 0 10px 0;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        
+        .demo-nav a {
+            display: block;
+            padding: 8px 12px;
+            margin: 4px 0;
+            background: var(--primary-blue-light);
+            color: var(--primary-blue);
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        
+        .demo-nav a:hover {
+            background: var(--primary-blue);
+            color: white;
+        }
+        
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVEGACIÓN DE DEMO -->
+<div class="demo-nav">
+    <h4>📋 Páginas Demo</h4>
+    <a href="#" onclick="showPage('login')">Login</a>
+    <a href="#" onclick="showPage('register')">Registro</a>
+    <a href="#" onclick="showPage('dashboard')">Dashboard</a>
+    <a href="#" onclick="showPage('tasks')">Mis Tareas</a>
+    <a href="#" onclick="showPage('create')">Crear Tarea</a>
+    <a href="#" onclick="showPage('profile')">Perfil</a>
+</div>
+
+<!-- ============================================
+     PÁGINA 1: LOGIN
+     ============================================ -->
+<div id="login" class="page active">
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-logo">
+                <div class="logo-icon">CZ</div>
+                <div class="logo-text">CRUDZASO</div>
+            </div>
+            
+            <div class="auth-header">
+                <h1 class="auth-title">Welcome back</h1>
+                <p class="auth-subtitle">Enter your credentials to access the platform</p>
+            </div>
+            
+            <form>
+                <div class="form-group">
+                    <label class="form-label">Email or username</label>
+                    <input type="text" class="form-input" placeholder="student@university.edu" value="student@university.edu">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <div class="password-input-wrapper">
+                        <input type="password" class="form-input" placeholder="••••••••" value="password123">
+                        <button type="button" class="password-toggle">👁️</button>
+                    </div>
+                </div>
+                
+                <div class="form-link">
+                    <a href="#">Forgot password?</a>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Sign in</button>
+                
+                <div class="form-footer">
+                    Don't have an account? <a href="#" onclick="showPage('register')">Register</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================
+     PÁGINA 2: REGISTRO
+     ============================================ -->
+<div id="register" class="page">
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-logo">
+                <div class="logo-icon">CZ</div>
+                <div class="logo-text">CRUDZASO</div>
+            </div>
+            
+            <div class="auth-header">
+                <h1 class="auth-title">Create account</h1>
+                <p class="auth-subtitle">Join the academic performance platform today</p>
+            </div>
+            
+            <form>
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-input" placeholder="John Doe">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Email address</label>
+                    <input type="email" class="form-input" placeholder="student@university.edu">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-input" placeholder="Create a password">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Confirm Password</label>
+                    <input type="password" class="form-input" placeholder="Confirm password">
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Register</button>
+                
+                <div class="form-footer">
+                    Already have an account? <a href="#" onclick="showPage('login')">Sign in</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================
+     PÁGINA 3: DASHBOARD
+     ============================================ -->
+<div id="dashboard" class="page">
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo-section">
+                <div class="logo-icon">CZ</div>
+                <div class="logo-text">CRUDZASO</div>
+            </div>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active" onclick="showPage('dashboard')">
+                            <span class="nav-icon">📊</span>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="showPage('tasks')">
+                            <span class="nav-icon">✓</span>
+                            <span>My Tasks</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="showPage('profile')">
+                            <span class="nav-icon">👤</span>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="breadcrumb">
+                    <span>🏠</span>
+                    <span class="breadcrumb-separator">›</span>
+                    <span class="breadcrumb-current">Dashboard</span>
+                </div>
+                
+                <div class="header-actions">
+                    <button class="notification-btn">🔔</button>
+                    
+                    <div class="user-profile">
+                        <img src="https://i.pravatar.cc/150?img=1" alt="Alex Morgan" class="user-avatar">
+                        <div class="user-info">
+                            <div class="user-name">Alex Morgan</div>
+                            <div class="user-role">Product Designer</div>
+                        </div>
+                    </div>
+                    
+                    <button class="logout-btn">🚪</button>
+                </div>
+            </header>
+            
+            <!-- Content -->
+            <div class="content-container">
+                <div class="page-header">
+                    <h1 class="page-title">Task Manager</h1>
+                    <p class="page-description">Overview of your current academic performance tasks.</p>
+                </div>
+                
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <span class="stat-title">Total Tasks</span>
+                            <div class="stat-icon blue">📋</div>
+                        </div>
+                        <div class="stat-value">24</div>
+                        <div class="stat-info positive">
+                            <span>📈</span>
+                            <span>+12% from last week</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <span class="stat-title">Completed</span>
+                            <div class="stat-icon green">✓</div>
+                        </div>
+                        <div class="stat-value">18</div>
+                        <div class="stat-info positive">
+                            <span>✓</span>
+                            <span>On track</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <span class="stat-title">Pending</span>
+                            <div class="stat-icon orange">⏰</div>
+                        </div>
+                        <div class="stat-value">6</div>
+                        <div class="stat-info warning">
+                            <span>⚠️</span>
+                            <span>2 High Priority</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <span class="stat-title">Overall Progress</span>
+                            <div class="stat-icon purple">📊</div>
+                        </div>
+                        <div class="stat-value">75%</div>
+                        <div class="stat-info neutral">
+                            <span>📊</span>
+                            <span>Keep it up</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Search Bar -->
+                <div class="search-bar">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search tasks...">
+                </div>
+                
+                <!-- Filter Tabs -->
+                <div class="filter-tabs">
+                    <button class="filter-tab active">All Tasks</button>
+                    <button class="filter-tab">Pending</button>
+                    <button class="filter-tab">Completed</button>
+                </div>
+                
+                <!-- Tasks Table -->
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>TASK NAME</th>
+                                <th>ASSIGNEE</th>
+                                <th>STATUS</th>
+                                <th>PRIORITY</th>
+                                <th>DUE DATE</th>
+                                <th>ACTIONS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="task-title">Update Documentation</div>
+                                </td>
+                                <td>
+                                    <div class="assignee-cell">
+                                        <div class="assignee-placeholder">SL</div>
+                                        <span>Sarah Lin</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="status-badge in-progress">In Progress</span>
+                                </td>
+                                <td>
+                                    <div class="priority-indicator">
+                                        <span class="priority-dot medium"></span>
+                                        <span>Medium</span>
+                                    </div>
+                                </td>
+                                <td>Oct 24, 2023</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn">✏️</button>
+                                        <button class="action-btn delete">🗑️</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>
+                                    <div class="task-title">Fix Login Authentication</div>
+                                </td>
+                                <td>
+                                    <div class="assignee-cell">
+                                        <img src="https://i.pravatar.cc/150?img=12" alt="Raj Patel" class="assignee-avatar">
+                                        <span>Raj Patel</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="status-badge pending">Pending</span>
+                                </td>
+                                <td>
+                                    <div class="priority-indicator">
+                                        <span class="priority-dot high"></span>
+                                        <span>High</span>
+                                    </div>
+                                </td>
+                                <td style="color: #ef4444; font-weight: 600;">Oct 22, 2023</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn">✏️</button>
+                                        <button class="action-btn delete">🗑️</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>
+                                    <div class="task-title">Quarterly Review</div>
+                                </td>
+                                <td>
+                                    <div class="assignee-cell">
+                                        <img src="https://i.pravatar.cc/150?img=5" alt="Michelle O." class="assignee-avatar">
+                                        <span>Michelle O.</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="status-badge completed">Completed</span>
+                                </td>
+                                <td>
+                                    <div class="priority-indicator">
+                                        <span class="priority-dot low"></span>
+                                        <span>Low</span>
+                                    </div>
+                                </td>
+                                <td>Oct 20, 2023</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn">👁️</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>
+                                    <div class="task-title">Database Optimization</div>
+                                </td>
+                                <td>
+                                    <div class="assignee-cell">
+                                        <img src="https://i.pravatar.cc/150?img=8" alt="Carlos M." class="assignee-avatar">
+                                        <span>Carlos M.</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="status-badge in-progress">In Progress</span>
+                                </td>
+                                <td>
+                                    <div class="priority-indicator">
+                                        <span class="priority-dot high"></span>
+                                        <span>High</span>
+                                    </div>
+                                </td>
+                                <td>Oct 25, 2023</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn">✏️</button>
+                                        <button class="action-btn delete">🗑️</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<!-- ============================================
+     PÁGINA 4: MIS TAREAS
+     ============================================ -->
+<div id="tasks" class="page">
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo-section">
+                <div class="logo-icon">CZ</div>
+                <div class="logo-text">CRUDZASO</div>
+            </div>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="showPage('dashboard')">
+                            <span class="nav-icon">📊</span>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active">
+                            <span class="nav-icon">✓</span>
+                            <span>My Tasks</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="showPage('profile')">
+                            <span class="nav-icon">👤</span>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="breadcrumb">
+                    <span>🏠</span>
+                    <span class="breadcrumb-separator">›</span>
+                    <span class="breadcrumb-current">Dashboard</span>
+                </div>
+                
+                <div class="header-actions">
+                    <button class="notification-btn">🔔</button>
+                    
+                    <div class="user-profile">
+                        <img src="https://i.pravatar.cc/150?img=1" alt="Alex Morgan" class="user-avatar">
+                        <div class="user-info">
+                            <div class="user-name">Alex Morgan</div>
+                            <div class="user-role">Admin</div>
+                        </div>
+                    </div>
+                    
+                    <button class="logout-btn">🚪</button>
+                </div>
+            </header>
+            
+            <!-- Content -->
+            <div class="content-container">
+                <div class="page-header" style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h1 class="page-title">Task Management</h1>
+                        <p class="page-description">View, edit, and organize all academic tasks in one place.</p>
+                    </div>
+                    <button class="btn-new-task" onclick="showPage('create')">
+                        <span>+</span>
+                        <span>New Task</span>
+                    </button>
+                </div>
+                
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <span class="stat-title">Total Tasks</span>
+                            <div class="stat-icon blue">📋</div>
+                        </div>
+                        <div class="stat-value">128</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <span class="stat-title">In Progress</span>
+                            <div class="stat-icon blue">⚡</div>
+                        </div>
+                        <div class="stat-value">12</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <span class="stat-title">Completed</span>
+                            <div class="stat-icon green">✓</div>
+                        </div>
+                        <div class="stat-value">84</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <span class="stat-title">Pending Review</span>
+                            <div class="stat-icon purple">⏰</div>
+                        </div>
+                        <div class="stat-value">32</div>
+                    </div>
+                </div>
+                
+                <!-- Search Bar -->
+                <div class="search-bar">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search by title, ID, or tag...">
+                </div>
+                
+                <!-- Tasks Table -->
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 40px;">
+                                    <input type="checkbox" class="task-checkbox">
+                                </th>
+                                <th>TASK NAME</th>
+                                <th>CATEGORY</th>
+                                <th>PRIORITY</th>
+                                <th>STATUS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="task-checkbox">
+                                </td>
+                                <td>
+                                    <div class="task-content">
+                                        <div class="task-title">Advanced Calculus Finals Prep</div>
+                                        <div class="task-meta">ID: #MATH-402 • Due in 2 days</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="category-tag">Mathematics</span>
+                                </td>
+                                <td>
+                                    <div class="priority-indicator">
+                                        <span class="priority-dot high"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="status-badge pending">Pending</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="task-checkbox">
+                                </td>
+                                <td>
+                                    <div class="task-content">
+                                        <div class="task-title">Physics Lab Report: Quantum Mechanics</div>
+                                        <div class="task-meta">ID: #PHYS-301 • Due tomorrow</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="category-tag">Physics</span>
+                                </td>
+                                <td>
+                                    <div class="priority-indicator">
+                                        <span class="priority-dot medium"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="status-badge in-progress">In Progress</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="task-checkbox" checked>
+                                </td>
+                                <td>
+                                    <div class="task-content">
+                                        <div class="task-title">History Essay: Industrial Revolution</div>
+                                        <div class="task-meta">ID: #HIST-101 • Submitted</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="category-tag">History</span>
+                                </td>
+                                <td>
+                                    <div class="priority-indicator">
+                                        <span class="priority-dot low"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="status-badge completed">Completed</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="task-checkbox">
+                                </td>
+                                <td>
+                                    <div class="task-content">
+                                        <div class="task-title">Database Systems Project: Phase 1</div>
+                                        <div class="task-meta">ID: #CS-204 • Group Assignment</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="category-tag">Computer Science</span>
+                                </td>
+                                <td>
+                                    <div class="priority-indicator">
+                                        <span class="priority-dot high"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="status-badge in-progress">In Progress</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="task-checkbox">
+                                </td>
+                                <td>
+                                    <div class="task-content">
+                                        <div class="task-title">English Lit: Modernist Poetry</div>
+                                        <div class="task-meta">ID: #ENG-305 • Reading</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="category-tag">Literature</span>
+                                </td>
+                                <td>
+                                    <div class="priority-indicator">
+                                        <span class="priority-dot medium"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="status-badge pending">Pending</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="pagination">
+                        <div class="pagination-info">Showing 1 to 5 of 128 results</div>
+                        <div class="pagination-controls">
+                            <button class="pagination-btn" disabled>‹</button>
+                            <button class="pagination-btn">›</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<!-- ============================================
+     PÁGINA 5: CREAR TAREA
+     ============================================ -->
+<div id="create" class="page">
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo-section">
+                <div class="logo-icon">CZ</div>
+                <div class="logo-text">CRUDZASO</div>
+            </div>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="showPage('dashboard')">
+                            <span class="nav-icon">📊</span>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="showPage('tasks')">
+                            <span class="nav-icon">✓</span>
+                            <span>My Tasks</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="showPage('profile')">
+                            <span class="nav-icon">👤</span>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="breadcrumb">
+                    <span>🏠</span>
+                    <span class="breadcrumb-separator">›</span>
+                    <span style="color: var(--text-secondary);">Dashboard</span>
+                    <span class="breadcrumb-separator">›</span>
+                    <span class="breadcrumb-current">Create New</span>
+                </div>
+                
+                <div class="header-actions">
+                    <button class="notification-btn">🔔</button>
+                    
+                    <div class="user-profile">
+                        <img src="https://i.pravatar.cc/150?img=1" alt="Alex Morgan" class="user-avatar">
+                        <div class="user-info">
+                            <div class="user-name">Alex Morgan</div>
+                            <div class="user-role">Admin</div>
+                        </div>
+                    </div>
+                    
+                    <button class="logout-btn">🚪</button>
+                </div>
+            </header>
+            
+            <!-- Content -->
+            <div class="content-container">
+                <div style="margin-bottom: 2rem;">
+                    <a href="#" onclick="showPage('tasks')" style="color: var(--text-secondary); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.938rem;">
+                        <span>←</span>
+                        <span>Back to Tasks</span>
+                    </a>
+                </div>
+                
+                <h1 class="page-title">Create New Task</h1>
+                
+                <div style="background: white; padding: 2rem; border-radius: 0.75rem; box-shadow: var(--shadow-card); max-width: 800px;">
+                    <form>
+                        <div class="form-group">
+                            <label class="form-label">Task Title <span style="color: var(--priority-high);">*</span></label>
+                            <input type="text" class="form-input" placeholder="e.g., Complete Quarter 3 Report">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Category</label>
+                                <select class="form-select">
+                                    <option>Select category...</option>
+                                    <option>Mathematics</option>
+                                    <option>Physics</option>
+                                    <option>Computer Science</option>
+                                    <option>History</option>
+                                    <option>Literature</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Priority</label>
+                                <select class="form-select">
+                                    <option>Medium</option>
+                                    <option>High</option>
+                                    <option>Low</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Status</label>
+                                <select class="form-select">
+                                    <option>Pending</option>
+                                    <option>In Progress</option>
+                                    <option>Completed</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Due Date</label>
+                                <input type="date" class="form-input">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Description</label>
+                            <textarea class="form-textarea" placeholder="Add details about this task..."></textarea>
+                        </div>
+                        
+                        <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 2rem;">
+                            <button type="button" class="btn btn-secondary" onclick="showPage('tasks')">Cancel</button>
+                            <button type="submit" class="btn btn-primary" style="width: auto; padding: 0.75rem 2rem;">
+                                <span>💾</span>
+                                <span>Save Task</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<!-- ============================================
+     PÁGINA 6: PERFIL
+     ============================================ -->
+<div id="profile" class="page">
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo-section">
+                <div class="logo-icon">CZ</div>
+                <div class="logo-text">CRUDZASO</div>
+            </div>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="showPage('dashboard')">
+                            <span class="nav-icon">📊</span>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="showPage('tasks')">
+                            <span class="nav-icon">✓</span>
+                            <span>My Tasks</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active">
+                            <span class="nav-icon">👤</span>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div style="position: absolute; bottom: 20px; left: 20px; right: 20px;">
+                <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; background: var(--gray-50); border-radius: 0.5rem;">
+                    <img src="https://i.pravatar.cc/150?img=47" alt="Dr. Sarah J." class="user-avatar" style="width: 32px; height: 32px;">
+                    <div>
+                        <div style="font-size: 0.813rem; font-weight: 600; color: var(--text-primary);">Dr. Sarah J.</div>
+                        <div style="font-size: 0.75rem; color: var(--text-secondary);">Admin</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="breadcrumb">
+                    <span>🏠</span>
+                    <span class="breadcrumb-separator">›</span>
+                    <span class="breadcrumb-current">My Profile</span>
+                </div>
+                
+                <div class="header-actions">
+                    <button class="notification-btn">🔔</button>
+                    
+                    <div class="user-profile">
+                        <img src="https://i.pravatar.cc/150?img=47" alt="Sarah Jenkins" class="user-avatar">
+                        <div class="user-info">
+                            <div class="user-name">Dr. Sarah J.</div>
+                            <div class="user-role">Admin</div>
+                        </div>
+                    </div>
+                    
+                    <button class="logout-btn">🚪</button>
+                </div>
+            </header>
+            
+            <!-- Content -->
+            <div class="content-container">
+                <h1 class="page-title" style="margin-bottom: 2rem;">My Profile</h1>
+                
+                <div class="profile-layout">
+                    <!-- Profile Card -->
+                    <div>
+                        <div class="profile-card">
+                            <div class="profile-banner"></div>
+                            <img src="https://i.pravatar.cc/300?img=47" alt="Dr. Sarah Jenkins" class="profile-avatar-large">
+                            
+                            <h2 class="profile-name">Dr. Sarah Jenkins</h2>
+                            <span class="profile-badge">System Admin</span>
+                            
+                            <div class="profile-email">
+                                <span>✉️</span>
+                                <span>sarah.jenkins@crudzaso.edu</span>
+                            </div>
+                            
+                            <div class="profile-stat">
+                                <div class="profile-stat-value">154</div>
+                                <div class="profile-stat-label">Tasks</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Profile Details -->
+                    <div>
+                        <div class="profile-details">
+                            <div class="profile-header">
+                                <h3 class="section-title">Personal Information</h3>
+                                <button class="btn-edit">
+                                    <span>✏️</span>
+                                    <span>Edit Profile</span>
+                                </button>
+                            </div>
+                            
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <div class="info-label">Full Name</div>
+                                    <div class="info-value">Sarah Jenkins</div>
+                                </div>
+                                
+                                <div class="info-item">
+                                    <div class="info-label">Employee ID</div>
+                                    <div class="info-value">CZ-882103</div>
+                                </div>
+                                
+                                <div class="info-item">
+                                    <div class="info-label">Phone</div>
+                                    <div class="info-value">+1 (555) 123-4567</div>
+                                </div>
+                                
+                                <div class="info-item">
+                                    <div class="info-label">Department</div>
+                                    <div class="info-value">
+                                        <span class="department-tag">Computer Science</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="info-item">
+                                    <div class="info-label">Role Level</div>
+                                    <div class="info-value">Senior Administrator</div>
+                                </div>
+                                
+                                <div class="info-item">
+                                    <div class="info-label">Join Date</div>
+                                    <div class="info-value">September 14, 2020</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<script>
+    function showPage(pageId) {
+        // Ocultar todas las páginas
+        document.querySelectorAll('.page').forEach(page => {
+            page.classList.remove('active');
+        });
+        
+        // Mostrar la página seleccionada
+        document.getElementById(pageId).classList.add('active');
+        
+        // Scroll al top
+        window.scrollTo(0, 0);
+        
+        // Prevenir navegación
+        event.preventDefault();
+        return false;
+    }
+</script>
+
+</body>
+</html>

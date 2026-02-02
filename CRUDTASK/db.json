@@ -1,0 +1,134 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "fullName": "Admin User",
+      "email": "admin@crudtask.com",
+      "password": "admin123",
+      "role": "admin",
+      "createdAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "fullName": "John Doe",
+      "email": "user@crudtask.com",
+      "password": "user123",
+      "role": "user",
+      "createdAt": "2024-01-15T00:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "fullName": "Sarah Johnson",
+      "email": "sarah@crudtask.com",
+      "password": "sarah123",
+      "role": "user",
+      "createdAt": "2024-02-01T00:00:00.000Z"
+    }
+  ],
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Advanced Calculus Finals Prep",
+      "description": "Review all chapters and practice problems for the final exam",
+      "category": "Mathematics",
+      "priority": "high",
+      "status": "pending",
+      "dueDate": "2026-02-10",
+      "userId": 2,
+      "createdBy": 2,
+      "createdAt": "2026-02-01T10:00:00.000Z",
+      "updatedAt": "2026-02-01T10:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "title": "Physics Lab Report: Quantum Mechanics",
+      "description": "Complete lab report on quantum mechanics experiments",
+      "category": "Physics",
+      "priority": "medium",
+      "status": "in-progress",
+      "dueDate": "2026-02-05",
+      "userId": 2,
+      "createdBy": 2,
+      "createdAt": "2026-01-28T09:00:00.000Z",
+      "updatedAt": "2026-02-01T14:30:00.000Z"
+    },
+    {
+      "id": 3,
+      "title": "History Essay: Industrial Revolution",
+      "description": "Write a 2000-word essay on the Industrial Revolution's impact",
+      "category": "History",
+      "priority": "low",
+      "status": "completed",
+      "dueDate": "2026-01-31",
+      "userId": 2,
+      "createdBy": 2,
+      "createdAt": "2026-01-20T11:00:00.000Z",
+      "updatedAt": "2026-01-30T16:45:00.000Z"
+    },
+    {
+      "id": 4,
+      "title": "Database Systems Project: Phase 1",
+      "description": "Design and implement database schema for the e-commerce project",
+      "category": "Computer Science",
+      "priority": "high",
+      "status": "in-progress",
+      "dueDate": "2026-02-08",
+      "userId": 2,
+      "createdBy": 2,
+      "createdAt": "2026-01-25T13:00:00.000Z",
+      "updatedAt": "2026-02-01T10:15:00.000Z"
+    },
+    {
+      "id": 5,
+      "title": "English Literature: Modernist Poetry",
+      "description": "Read and analyze 5 poems from the modernist period",
+      "category": "Literature",
+      "priority": "medium",
+      "status": "pending",
+      "dueDate": "2026-02-12",
+      "userId": 2,
+      "createdBy": 2,
+      "createdAt": "2026-02-01T15:00:00.000Z",
+      "updatedAt": "2026-02-01T15:00:00.000Z"
+    },
+    {
+      "id": 6,
+      "title": "Chemistry Lab: Organic Synthesis",
+      "description": "Complete organic synthesis experiment and write report",
+      "category": "Chemistry",
+      "priority": "high",
+      "status": "pending",
+      "dueDate": "2026-02-06",
+      "userId": 3,
+      "createdBy": 3,
+      "createdAt": "2026-01-29T10:00:00.000Z",
+      "updatedAt": "2026-01-29T10:00:00.000Z"
+    },
+    {
+      "id": 7,
+      "title": "Statistics Assignment: Hypothesis Testing",
+      "description": "Solve 10 problems on hypothesis testing",
+      "category": "Mathematics",
+      "priority": "medium",
+      "status": "completed",
+      "dueDate": "2026-02-01",
+      "userId": 3,
+      "createdBy": 3,
+      "createdAt": "2026-01-26T09:00:00.000Z",
+      "updatedAt": "2026-01-31T20:00:00.000Z"
+    },
+    {
+      "id": 8,
+      "title": "Web Development Project: Portfolio",
+      "description": "Create a personal portfolio website using React",
+      "category": "Computer Science",
+      "priority": "medium",
+      "status": "in-progress",
+      "dueDate": "2026-02-15",
+      "userId": 3,
+      "createdBy": 3,
+      "createdAt": "2026-01-30T11:00:00.000Z",
+      "updatedAt": "2026-02-01T13:00:00.000Z"
+    }
+  ]
+}

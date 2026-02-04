@@ -14,7 +14,6 @@ export async function renderAdminTasks() {
     app.innerHTML = `
         <div class="app-container">
             ${renderSidebar()}
-            
             <main class="main-content">
                 ${renderHeader()}
                 
@@ -37,6 +36,9 @@ export async function renderAdminTasks() {
                 </div>
             </main>
         </div>
+
+        <!-- BUG 2 ARREGLADO: el modal se inserta al DOM aquí, al mismo nivel que app-container -->
+        ${renderTaskModal()}
     `;
 
     await loadTasks();
@@ -96,6 +98,82 @@ function renderHeader() {
                 <button class="logout-btn" id="logoutBtn" title="Logout">🚪</button>
             </div>
         </header>
+    `;
+}
+
+function renderTaskModal() {
+    // Esta función solo retorna el string HTML del modal.
+    // Antes no se insertaba en ningún lugar del DOM.
+    return `
+        <div id="taskModal" class="modal" style="display: none;">
+            <div class="modal-content" style="background: white; padding: 2rem; border-radius: 1rem; max-width: 600px; margin: 2rem auto; box-shadow: var(--shadow-lg);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                    <h2 style="font-size: 1.5rem; font-weight: 700;" id="modalTitle">Create New Task</h2>
+                    <button class="btn-icon" id="closeModalBtn" style="font-size: 1.5rem;">✕</button>
+                </div>
+                
+                <form id="taskForm">
+                    <input type="hidden" id="taskId">
+                    
+                    <div class="form-group">
+                        <label class="form-label">Task Title</label>
+                        <input type="text" id="taskTitle" class="form-input" placeholder="e.g., Complete Quarter 3 Report" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Category</label>
+                            <select id="taskCategory" class="form-select" required>
+                                <option value="">Select category...</option>
+                                <option value="Mathematics">Mathematics</option>
+                                <option value="Physics">Physics</option>
+                                <option value="Computer Science">Computer Science</option>
+                                <option value="History">History</option>
+                                <option value="Literature">Literature</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Priority</label>
+                            <select id="taskPriority" class="form-select" required>
+                                <option value="low">Low</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Status</label>
+                            <select id="taskStatus" class="form-select" required>
+                                <option value="pending" selected>Pending</option>
+                                <option value="in-progress">In Progress</option>
+                                <option value="completed">Completed</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Due Date</label>
+                            <input type="date" id="taskDueDate" class="form-input" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Description</label>
+                        <textarea id="taskDescription" class="form-textarea" placeholder="Add details about this task..."></textarea>
+                    </div>
+                    
+                    <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 2rem;">
+                        <button type="button" class="btn btn-secondary" id="cancelBtn">Cancel</button>
+                        <button type="submit" class="btn btn-primary" style="width: auto; padding: 0.75rem 2rem;">
+                            <span id="submitBtnText">💾 Save Task</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
     `;
 }
 
@@ -212,9 +290,14 @@ function renderTasksTable() {
             </table>
         </div>
     `;
-    
+
+    // BUG 1 ARREGLADO: se removieron las dos llamadas sueltas que estaban aquí
+    //   openTaskModal(taskId)   <-- taskId no existía en este scope
+    //   renderTaskModal(taskId) <-- no se usaba el retorno ni recibe parámetro
+
+    // BUG 4 ARREGLADO: edit-btn y delete-btn se setean aquí, DESPUÉS de que
+    // la tabla ya existe en el DOM
     setupTaskActionListeners();
-    openTaskModal(taskId)
 }
 
 function setupEventListeners() {
@@ -222,6 +305,7 @@ function setupEventListeners() {
         authService.logout();
     });
     
+    // Filtros
     document.querySelectorAll('.filter-tab').forEach(tab => {
         tab.addEventListener('click', (e) => {
             document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
@@ -230,23 +314,37 @@ function setupEventListeners() {
             renderTasksTable();
         });
     });
+
+    // BUG 3 ARREGLADO: estos listeners estaban DENTRO del click de los filter-tabs.
+    // Se movieron aquí al mismo nivel porque el modal ya existe en el DOM desde que
+    // renderAdminTasks() terminó.
+    document.getElementById('taskForm')
+        ?.addEventListener('submit', handleTaskSubmit);
+    document.getElementById('closeModalBtn')
+        ?.addEventListener('click', closeTaskModal);
+    document.getElementById('cancelBtn')
+        ?.addEventListener('click', closeTaskModal);
     
+    // Navegación sidebar
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             router.navigate(link.getAttribute('href'));
         });
     });
-        // Edit buttons
+}
+
+// BUG 4 ARREGLADO: edit-btn se movió aquí junto con delete-btn.
+// Ambos se setean cada vez que se re-renderiza la tabla, que es el único
+// momento en que los botones existen en el DOM.
+function setupTaskActionListeners() {
     document.querySelectorAll('.edit-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             const taskId = btn.dataset.id;
             openTaskModal(taskId);
         });
     });
-}
 
-function setupTaskActionListeners() {
     document.querySelectorAll('.delete-btn').forEach(btn => {
         btn.addEventListener('click', async () => {
             const taskId = btn.dataset.id;
@@ -263,6 +361,7 @@ function setupTaskActionListeners() {
         });
     });
 }
+
 function openTaskModal(taskId = null) {
     const modal = document.getElementById('taskModal');
     const modalTitle = document.getElementById('modalTitle');
@@ -271,7 +370,6 @@ function openTaskModal(taskId = null) {
     form.reset();
     
     if (taskId) {
-        // Edit mode
         modalTitle.textContent = 'Edit Task';
         const task = currentTasks.find(t => t.id == taskId);
         
@@ -285,11 +383,9 @@ function openTaskModal(taskId = null) {
             document.getElementById('taskDescription').value = task.description || '';
         }
     } else {
-        // Create mode
         modalTitle.textContent = 'Create New Task';
         document.getElementById('taskId').value = '';
         
-        // Set default due date to tomorrow
         const tomorrow = new Date();
         tomorrow.setDate(tomorrow.getDate() + 1);
         document.getElementById('taskDueDate').value = tomorrow.toISOString().split('T')[0];
@@ -298,4 +394,39 @@ function openTaskModal(taskId = null) {
     modal.style.display = 'block';
 }
 
+// BUG 5 ARREGLADO: antes solo hacía updateTask cuando taskId existía,
+// pero no tenía rama para crear. Se agregó el else con createTask.
+async function handleTaskSubmit(e) {
+    e.preventDefault();
 
+    const taskId = document.getElementById('taskId').value;
+
+    const taskData = {
+        title: document.getElementById('taskTitle').value,
+        category: document.getElementById('taskCategory').value,
+        priority: document.getElementById('taskPriority').value,
+        status: document.getElementById('taskStatus').value,
+        dueDate: document.getElementById('taskDueDate').value,
+        description: document.getElementById('taskDescription').value
+    };
+
+    try {
+        if (taskId) {
+            await taskService.updateTask(taskId, taskData);
+            alert('Task updated successfully');
+        } else {
+            await taskService.createTask(taskData);
+            alert('Task created successfully');
+        }
+
+        closeTaskModal();
+        await loadTasks();
+    } catch (error) {
+        console.error(error);
+        alert('Error saving task');
+    }
+}
+
+function closeTaskModal() {
+    document.getElementById('taskModal').style.display = 'none';
+}

@@ -31,22 +31,17 @@
       "password": "sergio123",
       "role": "user",
       "createdAt": "2026-02-02T15:57:39.845Z"
+    },
+    {
+      "id": "ec2f",
+      "fullName": "jhon",
+      "email": "thegood@gmail.com",
+      "password": "1234567y",
+      "role": "user",
+      "createdAt": "2026-02-03T11:50:44.071Z"
     }
   ],
   "tasks": [
-    {
-      "id": "1",
-      "title": "Advanced Calculus Finals Prep",
-      "description": "Review all chapters and practice problems for the final exam",
-      "category": "Mathematics",
-      "priority": "high",
-      "status": "pending",
-      "dueDate": "2026-02-10",
-      "userId": 2,
-      "createdBy": 2,
-      "createdAt": "2026-02-01T10:00:00.000Z",
-      "updatedAt": "2026-02-01T10:00:00.000Z"
-    },
     {
       "id": "2",
       "title": "Physics Lab Report: Quantum Mechanics",
@@ -130,13 +125,39 @@
       "title": "Llorar",
       "category": "Other",
       "priority": "high",
-      "status": "in-progress",
+      "status": "completed",
       "dueDate": "2026-02-02",
-      "description": "llorar por esta prueba tan dificil",
+      "description": "llorar por esta prueba tan dificil ",
       "userId": "91bf",
       "createdBy": "91bf",
       "createdAt": "2026-02-02T17:34:39.298Z",
-      "updatedAt": "2026-02-02T17:35:13.018Z"
+      "updatedAt": "2026-02-03T16:06:08.952Z"
+    },
+    {
+      "id": "db5f",
+      "title": "sacrificar al chamo",
+      "category": "History",
+      "priority": "high",
+      "status": "pending",
+      "dueDate": "2026-02-03",
+      "description": "el chamo cae mal ",
+      "userId": "91bf",
+      "createdBy": "91bf",
+      "createdAt": "2026-02-03T11:47:14.785Z",
+      "updatedAt": "2026-02-03T11:47:14.785Z"
+    },
+    {
+      "id": "c95f",
+      "title": "vender bonais ",
+      "category": "Computer Science",
+      "priority": "low",
+      "status": "in-progress",
+      "dueDate": "2026-02-24",
+      "description": "",
+      "userId": "ec2f",
+      "createdBy": "ec2f",
+      "createdAt": "2026-02-03T11:51:31.770Z",
+      "updatedAt": "2026-02-03T15:45:07.353Z"
     }
   ]
 }
